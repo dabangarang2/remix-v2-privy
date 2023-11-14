@@ -1,11 +1,18 @@
 import type { MetaFunction } from "@remix-run/node";
-import { usePrivy } from "@privy-io/react-auth";
+import { Suspense, lazy } from "react";
+
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+
+const Loading = () => {
+  return <div>Loading</div>;
+};
+
+const Content = lazy(() => import("../components/Content.client"));
 
 export default function Index() {
   return (
@@ -36,7 +43,10 @@ export default function Index() {
           </a>
         </li>
       </ul>
-      <button>Open</button>
+
+      <Suspense fallback={<Loading />}>
+        <Content />
+      </Suspense>
     </div>
   );
 }
