@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { PrivyProvider } from "@privy-io/react-auth";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -23,7 +24,12 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <PrivyProvider
+          appId={'clasv4sso0008lb08yk5mvmk0'}
+          onSuccess={() => console.log('user logged in!')}
+        >
         <Outlet />
+        </PrivyProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

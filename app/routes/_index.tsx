@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-
+import { usePrivy } from "@privy-io/react-auth";
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
@@ -36,6 +36,7 @@ export default function Index() {
           </a>
         </li>
       </ul>
+      <button>Open</button>
     </div>
   );
 }
