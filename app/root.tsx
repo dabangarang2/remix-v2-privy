@@ -1,3 +1,4 @@
+import './process';
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import {
@@ -9,6 +10,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { PrivyProvider } from "@privy-io/react-auth";
+import { useEffect, useState } from "react";
+
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -24,15 +27,23 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.process = ${JSON.stringify({
+              LINK_API_URL: 'https://walletlink.org'
+            })}`,
+          }}
+        />
         <PrivyProvider
           appId={'clasv4sso0008lb08yk5mvmk0'}
           onSuccess={() => console.log('user logged in!')}
         >
         <Outlet />
-        </PrivyProvider>
+
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        </PrivyProvider>
       </body>
     </html>
   );
