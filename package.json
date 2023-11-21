@@ -2,7 +2,6 @@
   "name": "my-remix-app",
   "private": true,
   "sideEffects": false,
-  "type": "module",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev --manual",
@@ -10,7 +9,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@privy-io/react-auth": "^1.47.2",
+    "@privy-io/react-auth": "^1.48.0-beta-20231116235441",
     "@remix-run/css-bundle": "^2.2.0",
     "@remix-run/node": "^2.2.0",
     "@remix-run/react": "^2.2.0",
